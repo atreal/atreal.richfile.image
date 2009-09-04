@@ -1,0 +1,82 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="atreal.richfile.image">
+
+    <browser:resource
+        name="richfileimage_icon.png"
+        image="richfileimage_icon.png"
+        layer="atreal.richfile.image.interfaces.IRichFileImageLayer"
+        />
+
+    <adapter factory=".controlpanel.RichFileImageControlPanelAdapter" />
+
+    <browser:page
+        name="richfileimage-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".controlpanel.RichFileImageControlPanel"
+        permission="cmf.ManagePortal"
+        layer="atreal.richfile.image.interfaces.IRichFileImageLayer"
+        />
+
+    <browser:viewlet
+        for="atreal.richfile.image.interfaces.IImage"
+        name="atreal.richfile.image.viewlet"
+        manager="atreal.richfile.qualifier.interfaces.IRFViewletManager"
+        class=".viewlets.ImageViewlet"
+        permission="zope2.View"
+        layer="atreal.richfile.image.interfaces.IRichFileImageLayer"
+        />
+
+    <browser:page
+        for="atreal.richfile.image.interfaces.IImage"
+        name="rfimage"
+        class=".views.RFImageView"
+        permission="zope2.View"
+        template="view.pt"
+        allowed_interface="atreal.richfile.qualifier.interfaces.IRFView"
+        layer="atreal.richfile.image.interfaces.IRichFileImageLayer"
+        />
+
+    <!--KSS entry-->
+
+    <browser:resource
+      name="image.kss"
+      file="image.kss"
+      layer="atreal.richfile.image.interfaces.IRichFileImageLayer"
+      />
+
+    <browser:page
+        for="atreal.richfile.image.interfaces.IImage"
+        name="updateViewletImage"
+        attribute="update"
+        class=".views.RFImageView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <browser:page
+        for="atreal.richfile.image.interfaces.IImage"
+        name="activateViewletImage"
+        attribute="active"
+        class=".views.RFImageView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <browser:page
+        for="atreal.richfile.image.interfaces.IImage"
+        name="unactivateViewletImage"
+        attribute="unactive"
+        class=".views.RFImageView"
+        permission="cmf.ModifyPortalContent"
+        />
+    
+    <browser:page
+        for="atreal.richfile.image.interfaces.IImage"
+        name="refreshViewletImage"
+        attribute="refresh"
+        class=".views.RFImageView"
+        permission="zope2.View"
+        />
+
+</configure>

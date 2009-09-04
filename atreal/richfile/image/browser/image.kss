@@ -1,0 +1,24 @@
+#image a.viewlet-update:click {
+    evt-click-preventdefault:               true;
+    action-server:                          updateViewletImage;
+    updateViewletImage-viewlet:             kssAttr(viewlet, True);
+}
+
+#image a.viewlet-activate:click {
+    evt-click-preventdefault:               true;
+    action-server:                          activateViewletImage;
+    activateViewletImage-viewlet:           kssAttr(viewlet, True);
+}
+
+#image a.viewlet-unactivate:click {
+    evt-click-preventdefault:               true;
+    action-server:                          unactivateViewletImage;
+    unactivateViewletImage-viewlet:         kssAttr(viewlet, True);
+}
+
+
+#image a.viewlet-refresh:click {
+    evt-click-preventdefault:               true;
+    action-server:                          refreshViewletImage;
+    refreshViewletImage-viewlet:            kssAttr(viewlet, True);
+}

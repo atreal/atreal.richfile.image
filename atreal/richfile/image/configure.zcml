@@ -1,0 +1,44 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    xmlns:i18n="http://namespaces.zope.org/i18n"    
+    i18n_domain="atreal.richfile.image">
+
+    <five:registerPackage package="." initialize=".initialize" />
+    
+    <include package="atreal.filestorage.common" />
+    <include package="atreal.richfile.qualifier" />
+    
+    <i18n:registerTranslations directory="locales"/>
+
+    <adapter
+        for="atreal.richfile.image.interfaces.IImage"
+        factory="atreal.richfile.image.adapters.ToImageableObject"
+        provides="atreal.richfile.image.interfaces.IImageable"
+        />
+
+    <subscriber
+        for="atreal.richfile.image.interfaces.IImage
+             atreal.richfile.qualifier.interfaces.IFileQualifiedEvent"
+        handler="atreal.richfile.image.events.buildAndStoreImage"
+        />
+
+    <subscriber
+        for="atreal.richfile.image.interfaces.IImage
+             atreal.richfile.qualifier.interfaces.IMimetypeChangedEvent"
+        handler="atreal.richfile.image.events.cleanImageData"
+        />
+
+    <include package=".browser" />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="RichFileImage"
+        directory="profiles/default"
+        description="Plugin for RichFileQualifier to preview image files."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+</configure>

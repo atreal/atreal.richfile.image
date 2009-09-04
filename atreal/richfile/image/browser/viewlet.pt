@@ -1,0 +1,40 @@
+<dl class="richfile portlet"
+    tal:condition="view/available"
+    tal:attributes="id view/plugin_id"
+    i18n:domain="atreal.richfile.image">
+    
+    <dt tal:attributes="id string:${view/plugin_id}Header" class="rfheader portletHeader">
+        <span class="portletTopLeft"></span>
+        <tal:block tal:replace="structure view/controls"/>
+        <span class="title" style="font-weight:bold"
+            i18n:translate="">
+            Image preview
+        </span>
+
+        <span class="portletTopRight"></span>
+    </dt>
+    
+    <dd tal:condition="view/active"
+        class="rfbody portletItem odd"
+        tal:attributes="id string:${view/plugin_id}Body;
+                        class string:rfbody portletItem odd ${view/collapsed}">
+        
+        <!--Your specific code here-->        
+    
+        <a href=""
+           class="discreet"
+           tal:attributes="href string:${here/absolute_url}/rfimage">
+            <img src=""
+                 tal:attributes="src string:${here/absolute_url}/rfimage/preview" />
+            <br />
+            <span class="visualNoPrint" i18n:domain="plone">
+                <img src="" alt="" tal:replace="structure here/search_icon.gif" />
+                <span i18n:translate="label_click_to_view_full_image">Click to view full-size image&hellip;</span>
+            </span>
+       </a>
+        
+        <!--End of specific code-->
+    
+    </dd>
+    
+</dl>
